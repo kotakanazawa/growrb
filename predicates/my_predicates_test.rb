@@ -13,4 +13,16 @@ class PredicatesTest < Minitest::Test
     refute [nil, true, 99].my_all?
     assert [].my_all?
   end
+
+  def test_any_with_block
+    assert %w[ant bear cat].my_any? { |word| word.length >= 3 }
+    assert %w[ant bear cat].my_any? { |word| word.length >= 4 }
+  end
+
+  def test_any_with_pattern
+    refute %w[ant bear cat].my_any?(/d/)
+    assert [nil, true, 99].my_any?(Integer)
+    assert [nil, true, 99].my_any?
+    refute [].my_any?
+  end
 end
