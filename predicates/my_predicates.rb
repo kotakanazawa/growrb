@@ -27,7 +27,7 @@ module Enumerable
 
   def my_include?(arg)
     each do |el|
-      return true if arg === el
+      return true if arg == el
     end
     false
   end
@@ -42,6 +42,7 @@ module Enumerable
       else
         count += 1 if el
       end
+      return false if count > 1
     end
 
     true if count == 1
@@ -57,6 +58,7 @@ module Enumerable
       else
         count += 1 if el
       end
+      return false unless count.zero?
     end
 
     true if count.zero?
